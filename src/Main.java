@@ -23,10 +23,11 @@ import java.util.zip.ZipInputStream;
 
 public class Main {
 
+    public static final List<String> Exclusions = Arrays.asList("Main.java");
     static Comparator<File> datecmp = new Comparator<File>() {
         @Override
         public int compare(File o1, File o2) {
-            return Long.compare(o1.lastModified(), o2.lastModified());
+            return -Long.compare(o1.lastModified(), o2.lastModified());
         }
     };
 
@@ -42,21 +43,23 @@ public class Main {
         File folder = new File("src");
         ArrayList<File> listOfFiles = new ArrayList<>(Arrays.asList(folder.listFiles()));
         Collections.sort(listOfFiles, datecmp);
+
         int max = listOfFiles.size();
         for (int i = 0; i < max; i++) {
             File f = listOfFiles.get(i);
-            if (!f.isFile() || !f.getName().endsWith(".java")) {
+            if (!f.isFile() || !f.getName().endsWith(".java") || Exclusions.contains(f.getName())) {
                 listOfFiles.remove(f);
                 i--;
                 max--;
             }
         }
-        System.out.println("Enter Number or options:");
-        System.out.println("N = Next; B = Back; A= AlphaSort; D = DateSort; S = Search; 0 or E = Exit");
-        Scanner sc = new Scanner(consoleIn);
 
+
+        Scanner sc = new Scanner(consoleIn);
+        System.out.println("Enter Number or options:");
         int index = 0;
         while (true) {
+            System.out.println("N = Next; B = Back; A= AlphaSort; D = DateSort; S = Search; 0 or E = Exit");
             for (int i = index; (i < index + 5 && i < listOfFiles.size()); i++) {
                 System.out.println(i + 1 + ": " + listOfFiles.get(i).getName());
             }
