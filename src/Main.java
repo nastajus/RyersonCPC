@@ -160,9 +160,12 @@ public class Main {
 
             //System.setIn(new FileInputStream("input/" + c.getSimpleName()));
 
-        } catch (ClassNotFoundException | NoSuchMethodException|InvocationTargetException | IllegalAccessException | IOException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | IOException e) {
             System.out.println("Error During Reflection : " + e.getMessage());
-
+        }
+        catch (InvocationTargetException e){
+            System.out.println("Your program had a booboo. ಠ_ಠ");
+            e.getCause().printStackTrace();
         }
 
 
