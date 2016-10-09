@@ -6,12 +6,14 @@ import java.util.*;
 public class VirtualFriends {
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
-        List<Map<String,Boolean>> networks = new ArrayList<>();
 
         String str = sc.nextLine();
         int numTestCases = Integer.parseInt(str);
 
         for (int tc = 0; tc < numTestCases; tc++){
+
+            List<Map<String,Boolean>> networks = new ArrayList<>();
+
             str = sc.nextLine();
             int numFriendshipsFormed = Integer.parseInt(str);
 
